@@ -10,4 +10,5 @@ urlpatterns = [
     path("", views.table, name='table'),
     path("form", views.form, name='form'),
     path("form/edit/<pk>", views.edit, name='edit'),
+    path("form/delete/<pk>", views.delete, name="delete")
 ]

@@ -43,3 +43,8 @@ def edit(request, pk):
         return redirect('/')
     dt = Csit.objects.get(id=pk)
     return render(request, "npjAirport/edit.html", {'dt':dt})
+
+def delete(request, pk):
+    Csit.objects.get(id=pk).delete()
+    return redirect('/')
+
