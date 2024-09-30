@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
+from .import global_msg
 from .models import Csit
 
 # Create your views here.
 def index(request):
     data=Csit.objects.all()
-    return render(request,"npjairport\index.html",{'data':data})
+    return render(request,"npjairport/table.html",{'data':data})
 
 def base(request):
     return render(request,"npjairport\Base.html")
@@ -26,7 +28,9 @@ def form(request):
         name=det.get("name")
         email=det.get("email")
         phone=det.get("phone")
-        Csit.objects.create(name=name, email=email, phone=phone)
+        address=det.get("address")
+        Csit.objects.create(name=name, email=email, phone=phone, address=address)
+        messages.success(request,global_msg.SUCCESS_MESSAGE)
     return render(request,"npjairport/form.html")
 
 def edit(request, pk):
@@ -35,11 +39,14 @@ def edit(request, pk):
         name = det.get('name')
         phone = det.get('phone')
         email = det.get('email')
+        address = det.get('address')
         dm = Csit.objects.get(id=pk)
         dm.name = name
-        dm.mob = phone
+        dm.phone = phone
         dm.email = email
+        dm.address=address
         dm.save()
+
         return redirect('/')
     dt = Csit.objects.get(id=pk)
     return render(request, "npjAirport/edit.html", {'dt':dt})

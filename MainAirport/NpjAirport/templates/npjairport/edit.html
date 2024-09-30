@@ -24,21 +24,29 @@
                  </div>
 
 
-                 <div class="col-md-3">
-                     <div class="form-group">
-                         <label> Mob No  </label>
-                         <input type="text" name="phone" class="form-control" placeholder=" enter phone no"  maxlength="10" value="{{dt.phone}}">
-                     </div>
-                 </div>
+
                  <div class="col-md-3">
                      <div class="form-group">
                          <label> e-Mail </label>
                          <input type="email" name="email" class="form-control" placeholder="enter email" value="{{dt.email}}">
                      </div>
                  </div>
+
+                 <div class="col-md-3">
+                     <div class="form-group">
+                         <label>Phone no  </label>
+                         <input type="text" name="phone" class="form-control" placeholder=" enter phone no"  maxlength="10" value="{{dt.phone}}">
+                     </div>
+                 </div>
+
+                 <div class="col-md-3">
+                     <div class="form-group">
+                         <label> Address </label>
+                         <input type="text" name="address" class="form-control" placeholder="enter address" value="{{dt.address}}">
+                     </div>
             <button type="submit" class="col-md-1 btn btn-success btn-sm mt-"> update </button>
-         </div>
-     </form>
+            </div>
+        </form>
 
 </div>
     {% endblock %}
