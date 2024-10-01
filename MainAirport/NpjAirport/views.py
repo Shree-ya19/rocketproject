@@ -18,7 +18,7 @@ def contact(request):
     return render(request,"npjairport\contact.html")
 
 def table(request):
-    data = Csit.objects.all()
+    data = Csit.objects.filter(is_delete=False)
     return render(request,"npjairport/table.html",{'data':data})
 
 
@@ -40,7 +40,7 @@ def edit(request, pk):
         phone = det.get('phone')
         email = det.get('email')
         address = det.get('address')
-        dm = Csit.objects.get(id=pk)
+        dm = Csit.objects.get(id=pk, is_delete=True)
         dm.name = name
         dm.phone = phone
         dm.email = email
@@ -52,6 +52,9 @@ def edit(request, pk):
     return render(request, "npjAirport/edit.html", {'dt':dt})
 
 def delete(request, pk):
-    Csit.objects.get(id=pk).delete()
-    return redirect('/')
+  dx =  Csit.objects.get(id=pk, is_delete="False")
+  dx.is_delete=True
+  dx.save()
+  messages.success(request, global_msg.DELETE_MESSAGE)
+  return redirect('/')
 
